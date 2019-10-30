@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+<hr>
+User:
+<div th:text="${#authentication.name}">
+</div>
+<div th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">
+    This will only be displayed if authenticated user has role User.
+</div>
+
+<a th:href="@{/logout}">Logout</a>
+
+<hr/>
+</body>
+</html>

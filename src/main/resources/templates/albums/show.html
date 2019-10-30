@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head layout:insert="shared/head(title='Show')" layout:fragment="head">
+
+</head>
+
+
+<body>
+
+<style>
+    .cotainer {
+        width: 70vw;
+    }
+
+    .carusel {
+        background-color: black;
+    }
+
+    .carousel-inner {
+        display: table !important;
+    }
+
+    .carousel-item img {
+        display: table-cell;
+        margin: 0 auto;
+        height: 70vh;
+    }
+
+    .carousel-indicators li {
+        position: relative;
+        height: 75px;
+        width: 150px;
+    }
+
+    .carousel-indicators li img {
+        position: absolute;
+        height: 75px;
+        width: 150px;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+<div class="container">
+    <div id="carouselId" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li th:each="image, iter : ${theAlbum.imageForAlbum}" data-target="#carouselId"
+                th:data-slide-to="${iter.index}" th:class="${iter.index == 0} ? 'active' ">
+                <div class="image-container">
+                    <img th:src="'data:'+ ${image.type}+';base64,'+ ${image.image}">
+                </div>
+            </li>
+        </ol>
+
+        <div class="carousel-inner" role="listbox">
+            <div th:each="image, iter : ${theAlbum.imageForAlbum}"
+                 th:class="${iter.index == 0} ? 'carousel-item active' : 'carousel-item' ">
+                <img th:src="'data:'+ ${image.type}+';base64,'+ ${image.image}" th:alt="'Slide' + ${iter.index} ">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+
+<section layout:fragment="bodyScripts">
+
+</section>
+
+</body>
+
+</html>

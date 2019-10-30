@@ -1,0 +1,24 @@
+body {
+    overflow: hidden;
+}
+
+.header-jumbotron {
+    height: 100vh;
+    background-image: url("../img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.custom-jumbotron {
+    height: 100vh;
+    text-align: -webkit-center;
+    display: table;
+    width: 100vw;
+    background-color: #e9ecef3b;
+    color: white;
+}
+
+.jumbotron-content {
+    display: table-cell;
+    vertical-align: middle;
+}

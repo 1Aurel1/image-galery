@@ -1,0 +1,24 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head layout:fragment="head">
+
+</head>
+
+<body>
+
+<section layout:fragment="header"></section>
+
+<section id="content" layout:fragment="content"></section>
+
+<section id="footer" layout:insert="shared/footer"></section>
+
+<script th:inline="javascript">
+    var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+    var csrfToken = $("meta[name='_csrf']").attr("content");
+    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+</script>
+
+<section id="bodyScripts" layout:fragment="bodyScripts"></section>
+</body>
+
+</html>

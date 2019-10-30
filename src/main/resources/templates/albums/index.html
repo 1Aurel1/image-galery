@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+
+<head layout:insert="shared/head(title='My Albums')" layout:fragment="head">
+
+</head>
+
+
+<body>
+<section id="header" layout:insert="shared/navbar :: navbar" layout:fragment="header"></section>
+
+<section class="mt-5" layout:fragment="content">
+    <div class="pt-5 container">
+        <div class="row">
+
+            <div class="card-group">
+                <div th:each="album : ${albums}" class="card" style="width: 18rem;">
+                    <a class="simple-ajax-popup-align-top" th:href="'/albums/'+${album.id}">
+                        <img th:src="'data:'+ ${album.imageForAlbum[0].type}+';base64,'+ ${album.imageForAlbum[0].image}"
+                             class="card-img-top" alt="...">
+                    </a>
+
+
+                    <div class="card-body">
+                        <h4 class="card-title" th:text="${album.name}"></h4>
+                        <a th:href="@{'/albums/'}+${album.id}" class="card-link simple-ajax-popup-align-top">Show
+                            Album</a>
+                        <a th:href="@{/albums/edit/} + ${album.id}" class="float-right pl-2"> <i
+                                style="color: green;" class="fas fa-edit    "></i> </a>
+                        <a th:data-delete-album="${album.id}" th:onclick="'deleteAlbum('+ ${album.id} +')'"
+                           class="float-right pl-2"> <i style="color:red;"
+                                                        class="fas fa-trash-alt    "></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section id="bodyScripts" layout:fragment="bodyScripts">
+
+    <!-- Magnific Popup core JS file -->
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+    <script th:src="@{/js/myAlbum.js}"></script>
+
+    <script>
+
+    </script>
+
+</section>
+
+</body>
+
+</html>

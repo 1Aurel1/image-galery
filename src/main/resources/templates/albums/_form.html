@@ -1,0 +1,37 @@
+<form if="form" th:action="@{/albums/save/} + ${token}" th:object="${album}" method="post" data-parsley-validate="">
+
+    <div class="form-group">
+        <label class="sr-only" for="id">id</label>
+        <input type="number" class="form-control d-none" th:field="*{id}" placeholder="">
+    </div>
+
+    <div class="form-group">
+        <label for="name">Album Title</label>
+        <input th:field="*{name}" type="text" class="form-control" required name="name" id="name"
+               aria-describedby="albumename" placeholder="Enter the title...">
+        <small id="albumename" class="form-text text-muted">What word comes to your mind when you
+            think about this pictures?</small>
+    </div>
+
+    <div class="row pt-5 pb-5">
+        <div id="images" class="col-lg-12">
+            <label class="custom-file">
+                <input type="file" name="newImage" id="newImage" th:token="${token}" placeholder="Hello"
+                       onchange="uploadImg()" class="btn btn-primary btn-custom-image custom-file-input">
+            </label>
+            <diva th:each="image : ${album.imageForAlbum}" th:id="'diva'+${image.id}" class="imgContainer">
+                <img th:id="'image' + ${image.id}" th:src="'data:' + ${image.type} + ';base64,' + ${image.image}"
+                     class="img-thumbnail">
+                <a th:id="'image'+${image.id}" class="x-button btn btn-primary"
+                   th:onclick="'deleteImg('+ ${image.id} +')'">
+                    <i class="far fa-trash-alt" aria-hidden="true"></i></a>
+            </diva>
+            <a name="btnForImageUpload" id="btnForImageUpload" class="btn btn-primary btn-custom-image" href="#"
+               role="button">
+                <i class="fas fa-plus"></i>
+            </a>
+        </div>
+    </div>
+
+    <button type="submit" value="Submit" class="btn btn-lg btn-block btn-primary">Save</button>
+</form>

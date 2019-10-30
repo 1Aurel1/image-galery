@@ -1,0 +1,32 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+
+    <ins layout:replace="shared/head"></ins>
+
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+
+</head>
+
+<body>
+<section layout:insert="shared/navbar :: navbar"></section>
+<div class="header-jumbotron">
+    <div class="jumbotron custom-jumbotron">
+        <div class="jumbotron-content">
+            <h1 class="display-3">Photo Albums Reinvented</h1>
+            <p class="lead">The fastest way to your most beautiful album.</p>
+            <hr class="my-2">
+            <p class="lead">
+                <a sec:authorize="isAnonymous()" class="btn btn-primary btn-lg" th:href="@{/users/register}"
+                   role="button">Register Now</a>
+                <a sec:authorize="isAuthenticated()" class="btn btn-primary btn-lg" th:href="@{/albums/new}"
+                   role="button">Create a New Album</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+</html>
